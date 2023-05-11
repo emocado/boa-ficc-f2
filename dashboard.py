@@ -62,8 +62,7 @@ def dashboard():
 
         if latest_config == None or latest_fx == None:
             continue
-        if key > 10:
-            break
+
         print('-----------------------------------------------------DASHBOARD-----------------------------------------------------')
         print('EventId: ', key)
         print('Event Type: ', item[0]['EventType'])
@@ -76,13 +75,12 @@ def dashboard():
             # find the corresponding output in output.json
             output = app.process_one_json_input(events_dict,item[0])
             output_dict[output['Ccy']] = output
-        print(output_dict)
         for i in output_dict.values():
             table.add_row([i['Ccy'], i['Tenor'], i['Position'], i['Bid'], i['Ask'], i['QuoteStatus']])
 
         print(table)
         table.clear_rows()
-  
+
         print('-------------------------------------------------------------------------------------------------------------------')
         
     
