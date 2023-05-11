@@ -19,3 +19,13 @@ def bid(new_mid,spread):
 # spread is taken from config event
 def ask(new_mid,spread):
     return new_mid + (0.5*spread/10000)
+
+def change_quantity(trade):
+    status = trade['BuySell']
+    quantity = trade['Quantity']
+
+    if status == 'Sell':
+        return -1*quantity
+    
+    if status == 'Buy':
+        return quantity
