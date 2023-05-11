@@ -1,0 +1,47 @@
+[
+    {
+        "Ccy": "CHX",
+        "Tenor": "1M",
+        "EventId": 5
+    },
+    {
+        "Ccy": "GBX",
+        "Tenor": "1M",
+        "EventId": 25
+    },
+    {
+        "Ccy": "GBX",
+        "Tenor": "1M",
+        "EventId": 20
+    },
+    {
+        "Ccy": "JPX",
+        "Tenor": "12M",
+        "EventId": 66
+    },
+    {
+        "Ccy": "GBX",
+        "Tenor": "1M",
+        "EventId": 3
+    },
+    {
+        "Ccy": "GBX",
+        "Tenor": "2M",
+        "EventId": 91
+    },
+    {
+        "Ccy": "EUX",
+        "Tenor": "6M",
+        "EventId": 3
+    },
+    {
+        "Ccy": "JPX",
+        "Tenor": "12M",
+        "EventId": 99
+    },
+    {
+        "Ccy": "CHX",
+        "Tenor": "2M",
+        "EventId": 89
+    }
+]
