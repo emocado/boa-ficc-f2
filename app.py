@@ -96,36 +96,7 @@ def process_one_json_input(events_dict,first_input):
     
     return small_output_json
 
-def sample_test_case():
-    events = read_json('FICC-code_to_connect/sample_events.json')
-    inputs = read_json('FICC-code_to_connect/sample_input.json')
-    outputs = read_json('FICC-code_to_connect/sample_output.json')
-    
-    events_dict = convert_list_to_dict(events)
-        
-    for i, input in enumerate(inputs):
-        my_output = process_one_json_input(events_dict, input)
-        if my_output != outputs[i]:
-            print("Wrong")
-            print(my_output)
-            print(outputs[i])
-            break
-    else:
-        print("passed")
-    
-def final_test_case():
-    events = read_json('FICC-code_to_connect_final_data_set/events.json')
-    inputs = read_json('FICC-code_to_connect_final_data_set/input.json')
-    
-    events_dict = convert_list_to_dict(events)
-        
-    for input in inputs:
-        process_one_json_input(events_dict, input)
-    print("passed")
-    
 if __name__ == '__main__':
-    # sample_test_case()
-    # final_test_case()
     events_dict = defaultdict(list)
     inputs = read_json('FICC-code_to_connect/sample_input.json')
     inputs_dict = convert_list_to_dict(inputs)
@@ -133,16 +104,14 @@ if __name__ == '__main__':
     events = []
 
     while True:
-        time.sleep(3)
         new_events = read_json('new_sample_events.json')
         if not events_dict:
             events = new_events
             events_dict = convert_list_to_dict(new_events)
             for event_id in events_dict:
-                if event_id in inputs_dict:
-                    for input in inputs_dict[event_id]:
-                        my_output = process_one_json_input(events_dict, input)
-                        my_outputs[event_id].append(my_output)
+                for input in inputs_dict[event_id]:
+                    my_output = process_one_json_input(events_dict, input)
+                    my_outputs[event_id].append(my_output)
         else:
             latest_event_jsons = new_events[len(events):]
             events = new_events
@@ -154,4 +123,4 @@ if __name__ == '__main__':
                         my_output = process_one_json_input(events_dict, input)
                         my_outputs[event_id].append(my_output)
         print("my_outputs:", my_outputs)
-
+        time.sleep(3)
