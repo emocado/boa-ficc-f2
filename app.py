@@ -91,7 +91,6 @@ def process_one_json_input(events_dict,first_input):
     
     return small_output_json
 
-    # return small_output_json
 def app():
     events = read_json('FICC-code_to_connect/sample_events.json')
     inputs = read_json('FICC-code_to_connect/sample_input.json')
@@ -107,6 +106,5 @@ def app():
             print(outputs[i])
     
     
-
 if __name__ == '__main__':
     app()
