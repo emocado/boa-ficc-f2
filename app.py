@@ -121,6 +121,6 @@ if __name__ == '__main__':
                 if event_id in inputs_dict:
                     for input in inputs_dict[event_id]:
                         my_output = process_one_json_input(events_dict, input)
+                        print("my_output:", my_output)
                         my_outputs[event_id].append(my_output)
-        print("my_outputs:", my_outputs)
         time.sleep(3)
