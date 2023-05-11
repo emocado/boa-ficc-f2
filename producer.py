@@ -2,6 +2,7 @@ import json
 import time
 import random
 from os import path
+import threading
 
 def read_json(filename):
     with open(filename, 'r') as f:
@@ -43,8 +44,8 @@ def data_producer():
                     json.dump([event], json_file, indent=4, separators = (',',':'))     
 
 if __name__ == '__main__':
-    market_producer()
-    data_producer()
+    threading.Thread(target=market_producer).start()
+    threading.Thread(target=data_producer).start()
 
 
 
