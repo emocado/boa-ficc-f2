@@ -1,5 +1,6 @@
 import json
 import calculations as calc
+import time
 
 def read_json(filename):
     with open(filename, 'r') as f:
@@ -107,4 +108,37 @@ def app():
     
     
 if __name__ == '__main__':
-    app()
+    # app()
+    events_dict = {}
+    inputs = read_json('FICC-code_to_connect/sample_input.json')
+    inputs_dict = convert_list_to_dict(inputs)
+    print(inputs_dict)
+    my_outputs = []
+    events = []
+
+    while True:
+        time.sleep(3)
+        new_events = read_json('new_sample_events.json')
+        if not events_dict:
+            events = new_events
+            events_dict = convert_list_to_dict(new_events)
+            for event_id in events_dict:
+                if event_id in inputs_dict:
+                    for input in inputs_dict[event_id]:
+                        my_output = process_one_json_input(events_dict, input)
+                        my_outputs.append(my_output)
+        else:
+            latest_event_jsons = new_events[len(events):]
+            events = new_events
+            for event_json in latest_event_jsons:
+                event_id = event_json['EventId']
+                if event_id not in events_dict:
+                    events_dict[event_id] = []
+                
+                events_dict[event_id].append(event_json)
+                if event_id in inputs_dict:
+                    for input in inputs_dict[event_id]:
+                        my_output = process_one_json_input(events_dict, input)
+                        my_outputs.append(my_output)
+        print("my_outputs:", my_outputs)
+
