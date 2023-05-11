@@ -32,8 +32,8 @@ def change_quantity(trade):
     return quantity
 
 def varies(price,rate):
-    min_rate = 0.9(rate)
-    max_rate = 1.1(rate)
+    min_rate = 0.9*rate
+    max_rate = 1.1*rate
     if price < min_rate or price > max_rate:
         return True
     return False
