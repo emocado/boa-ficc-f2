@@ -27,8 +27,6 @@ def change_quantity(trade):
     status = trade['BuySell']
     quantity = trade['Quantity']
 
-    if status == 'Sell':
+    if status == 'sell':
         return -1*quantity
-    
-    if status == 'Buy':
-        return quantity
+    return quantity
