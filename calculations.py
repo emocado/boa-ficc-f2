@@ -9,16 +9,19 @@ def skew(net_position, skew_ratio, var):
 
 # this requires getting number of days and the config values from config events
 def variance(m,x,b):
+    x = int(x[0:-1])
     days = x*30
     return m*days + b
 
 # spread is taken from config event
 def bid(new_mid,spread):
-    return new_mid - (0.5*spread/10000)
+    bid = new_mid - (0.5*spread/10000)
+    return round(bid,4)
 
 # spread is taken from config event
 def ask(new_mid,spread):
-    return new_mid + (0.5*spread/10000)
+    ask = new_mid + (0.5*spread/10000)
+    return round(ask,4)
 
 def change_quantity(trade):
     status = trade['BuySell']
