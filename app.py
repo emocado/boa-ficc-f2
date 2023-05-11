@@ -57,6 +57,8 @@ def process_one_json_input(events_dict,first_input):
         small_output_json['Position'] = net_quantity
         return small_output_json
 
+    latest_FXMidEvent = None
+    latest_ConfigEvent = None
 
     for event in temp_event_list:
         if event['EventType'] == 'FXMidEvent' and event['Ccy'] == first_input['Ccy']:
@@ -64,6 +66,9 @@ def process_one_json_input(events_dict,first_input):
         elif event['EventType'] == 'ConfigEvent':
             latest_ConfigEvent = event
 
+    if latest_FXMidEvent == None or latest_ConfigEvent == None:
+        return small_output_json
+    
     rate = latest_FXMidEvent['rate']
     skew_ratio = latest_ConfigEvent['DivisorRatio']
     spread = latest_ConfigEvent['Spread']
